@@ -18,14 +18,10 @@ $(document).keypress(function () {
 $(".btn").click(function () {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
-  // console.log(userClickedPattern);
-  // console.log(gamePattern);
 
   makeSound(userChosenColour);
   animatePress(userChosenColour);
-  // console.log(userClickedPattern[userClickedPattern.length - 1]);
-  // console.log(gamePattern[gamePattern.length -1]);
-  // console.log(lastIndex);
+
   checkAnswer(userClickedPattern.length - 1);
 
 });
@@ -33,13 +29,16 @@ $(".btn").click(function () {
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     console.log("success");
-    if (userClickedPattern.length === gamePattern.length) {
+    if (userClickedPattern.length === gamePattern.length){
       setTimeout(function () {
         nextSequence();
       }, 1000);
     }
   } else {
+    console.log("wrong");
+
     makeSound("wrong");
+
     $("body").addClass("game-over");
     setTimeout(function () {
       $("body").removeClass("game-over");
